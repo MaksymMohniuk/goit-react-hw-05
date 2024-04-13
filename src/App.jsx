@@ -1,7 +1,9 @@
-import { NavLink, Routes, Rout } from "react-router-dom";
+import { NavLink, Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
 import MoviesPage from "./pages/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
+import MovieDetailsPage from "./pages/MovieDetailsPage";
 
 import clsx from "clsx";
 import styles from "./App.module.css";
@@ -17,15 +19,17 @@ function App() {
           <NavLink className={getNavLinkClassName} to="/">
             Home
           </NavLink>
-          <NavLink className={getNavLinkClassName} to="/movies-page">
+          <NavLink className={getNavLinkClassName} to="/movies">
             Movies
           </NavLink>
         </nav>
       </header>
       <main>
         <Routes>
-          <Rout path="/" element={<HomePage />}></Rout>
-          <Rout path="/movies-page" element={<MoviesPage />}></Rout>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/movies" element={<MoviesPage />}></Route>
+          <Route path="/movies/:movieId" element={<MovieDetailsPage />}></Route>
+          <Route path="*" element={<NotFoundPage />}></Route>
         </Routes>
       </main>
     </>
