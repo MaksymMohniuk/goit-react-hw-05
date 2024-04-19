@@ -1,7 +1,7 @@
 import { NavLink, Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
-import MoviesPage from "./pages/HomePage";
+import MoviesPage from "./pages/MoviesPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
 
