@@ -11,12 +11,13 @@ const FORM_INITIAL_VALUES = {
 };
 
 const SearchForm = ({ onSetSearchQuery }) => {
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, { resetForm }) => {
     if (!values.searchFilms.trim()) {
       toast.error("Необхідно ввести текст для пошуку фільмів");
       return;
     }
     onSetSearchQuery(values.searchFilms);
+    resetForm();
   };
 
   return (

@@ -15,11 +15,12 @@ const MoviesPage = () => {
   useEffect(() => {
     if (!query) return;
 
-    async function getMoviesByQuery() {
+    async function asyncWrapper() {
       try {
         setIsLoading(true);
         const data = await getMoviesByQuery(query);
-        setFilms(data.results);
+        setFilms(data);
+        console.log(data);
       } catch (error) {
         setIsError(true);
       } finally {
@@ -27,7 +28,7 @@ const MoviesPage = () => {
       }
     }
 
-    getMoviesByQuery();
+    asyncWrapper();
   }, [query]);
 
   const onSetSearchQuery = (searchTerm) => {
