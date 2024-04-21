@@ -7,7 +7,7 @@ import MovieList from "../components/MovieList";
 import { getMoviesByQuery } from "../services/api";
 
 const MoviesPage = () => {
-  const [films, setFilms] = useState(null);
+  const [movies, setMovies] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,7 +19,7 @@ const MoviesPage = () => {
       try {
         setIsLoading(true);
         const data = await getMoviesByQuery(query);
-        setFilms(data);
+        setMovies(data);
         console.log(data);
       } catch (error) {
         setIsError(true);
@@ -40,7 +40,7 @@ const MoviesPage = () => {
       <SearchForm onSetSearchQuery={onSetSearchQuery} />
       {isLoading && <Loader />}
       {isError && <NotFoundPage />}
-      {films && <MovieList films={films} />}
+      {movies && <MovieList movies={movies} />}
     </div>
   );
 };

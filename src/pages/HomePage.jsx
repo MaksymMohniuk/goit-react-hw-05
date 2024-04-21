@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getTrendingMovies } from "../services/api";
 import Loader from "../components/Loader/Loader";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -28,7 +29,9 @@ const HomePage = () => {
       {isLoading && <Loader />}
       <ul>
         {trendingMovies.map((movie) => (
-          <li key={movie.id}>{movie.title}</li>
+          <li key={movie.id}>
+            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+          </li>
         ))}
       </ul>
     </div>

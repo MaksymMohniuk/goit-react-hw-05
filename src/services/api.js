@@ -17,9 +17,9 @@ export const getMoviesByQuery = async (query) => {
   return data.results;
 };
 
-export const getMovieDetails = async (movie_id) => {
-  const { data } = await axios.get(`movie/${movie_id}`);
-  return data.results;
+export const getMovieDetails = async (movieId) => {
+  const { data } = await axios.get(`movie/${movieId}`);
+  return data;
 };
 
 export const getMovieCredits = async (movie_id) => {

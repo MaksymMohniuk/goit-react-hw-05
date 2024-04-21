@@ -1,9 +1,15 @@
-const MovieList = ({ films }) => {
+import { Link } from "react-router-dom";
+
+const MovieList = ({ movies }) => {
   return (
     <ul>
-      {Array.isArray(films) &&
-        films.map((film) => {
-          return <li key={film.id}>{film.title}</li>;
+      {Array.isArray(movies) &&
+        movies.map((movie) => {
+          return (
+            <li key={movie.id}>
+              <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+            </li>
+          );
         })}
     </ul>
   );
