@@ -1,0 +1,31 @@
+.movie-cast-container {
+  padding: 20px;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.error-message {
+  text-align: center;
+  font-size: 24px;
+  color: red;
+}
+
+.movie-cast-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.movie-cast-item {
+  margin-bottom: 20px;
+}
+
+.actor-name {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+}

@@ -5,6 +5,7 @@ import Loader from "../components/Loader/Loader";
 import NotFoundPage from "./NotFoundPage";
 import MovieList from "../components/MovieList";
 import { getMoviesByQuery } from "../services/api";
+import styles from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState(null);
@@ -12,6 +13,7 @@ const MoviesPage = () => {
   const [isError, setIsError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("query");
+
   useEffect(() => {
     if (!query) return;
 
@@ -20,7 +22,6 @@ const MoviesPage = () => {
         setIsLoading(true);
         const data = await getMoviesByQuery(query);
         setMovies(data);
-        console.log(data);
       } catch (error) {
         setIsError(true);
       } finally {
@@ -36,9 +37,13 @@ const MoviesPage = () => {
   };
 
   return (
-    <div>
+    <div className={styles["page-container"]}>
       <SearchForm onSetSearchQuery={onSetSearchQuery} />
-      {isLoading && <Loader />}
+      {isLoading && (
+        <div className={styles["loader-container"]}>
+          <Loader />
+        </div>
+      )}
       {isError && <NotFoundPage />}
       {movies && <MovieList movies={movies} />}
     </div>

@@ -1,0 +1,22 @@
+.homepage-container {
+  padding: 20px;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.error-message {
+  text-align: center;
+  font-size: 24px;
+  color: red;
+}
+
+.homepage-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+}

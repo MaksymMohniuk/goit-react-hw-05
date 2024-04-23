@@ -1,6 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
+import styles from "./SearchForm.module.css";
 
 const searchFormSchema = Yup.object().shape({
   searchFilms: Yup.string().required("Search term is required!"),
@@ -21,29 +22,36 @@ const SearchForm = ({ onSetSearchQuery }) => {
   };
 
   return (
-    <div>
+    <div className={styles["search-form-container"]}>
       <Formik
         initialValues={FORM_INITIAL_VALUES}
         validationSchema={searchFormSchema}
         onSubmit={handleSubmit}
       >
-        <header>
-          <Form>
-            <div>
-              <label>
-                <Field
-                  type="text"
-                  name="searchFilms"
-                  autoComplete="off"
-                  autoFocus
-                  placeholder="Search films"
-                />
-                <ErrorMessage component="p" name="searchFilms" />
-              </label>
-            </div>
-            <button type="submit">Search</button>
-          </Form>
-        </header>
+        <Form className={styles["search-form"]}>
+          <div className={styles["form-group"]}>
+            <label htmlFor="searchFilms" className={styles["form-label"]}>
+              Search films
+            </label>
+            <Field
+              type="text"
+              id="searchFilms"
+              name="searchFilms"
+              autoComplete="off"
+              autoFocus
+              placeholder="Search films"
+              className={styles["form-control"]}
+            />
+            <ErrorMessage
+              name="searchFilms"
+              component="p"
+              className={styles["error-message"]}
+            />
+          </div>
+          <button type="submit" className={styles["submit-button"]}>
+            Search
+          </button>
+        </Form>
       </Formik>
     </div>
   );

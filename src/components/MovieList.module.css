@@ -1,0 +1,18 @@
+.movie-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.movie-item {
+  margin-bottom: 10px;
+}
+
+.movie-link {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+}
+
+.movie-link:hover {
+  color: #007bff;
+}

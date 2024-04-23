@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Loader from "../components/Loader/Loader";
 import NotFoundPage from "../pages/NotFoundPage";
 import { getMovieCredits } from "../services/api";
+import styles from "./MovieCast.module.css"; // імпортуйте стилі з CSS-модуля
 
 const MovieCast = () => {
   const { movieId } = useParams();
@@ -15,8 +16,8 @@ const MovieCast = () => {
       try {
         setIsLoading(true);
         const data = await getMovieCredits(movieId);
-        setMovieCast(data);
-        console.log(data);
+        setMovieCast(data.cast);
+        console.log(data.cast);
       } catch (error) {
         setIsError(true);
       } finally {
@@ -28,19 +29,24 @@ const MovieCast = () => {
   }, [movieId]);
 
   return (
-    <div>
-      {isLoading && <Loader />}
+    <div className={styles["movie-cast-container"]}>
+      {isLoading && (
+        <div className={styles["loader-container"]}>
+          <Loader />
+        </div>
+      )}
       {isError && <NotFoundPage />}
       {movieCast !== null && movieCast.length > 0 && (
         <>
-          <ul>
+          <h3>Movie Cast</h3>
+          <ul className={styles["movie-cast-list"]}>
             {movieCast.map((actor) => (
-              <li key={actor.id}>
+              <li key={actor.id} className={styles["movie-cast-item"]}>
                 <img
                   src={`https://image.tmdb.org/t/p/w200/${actor.profile_path}`}
                   alt="actor photo"
                 />
-                <h3>{actor.original_name}</h3>
+                <h3 className={styles["actor-name"]}>{actor.name}</h3>
               </li>
             ))}
           </ul>

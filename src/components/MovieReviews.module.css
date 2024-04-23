@@ -1,0 +1,35 @@
+/* MovieReviews.module.css */
+
+.review-container {
+  padding: 20px;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.error-message {
+  text-align: center;
+  font-size: 24px;
+  color: red;
+}
+
+.review-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.review-item {
+  margin-bottom: 20px;
+}
+
+.review-author {
+  font-weight: bold;
+}
+
+.review-content {
+  margin-top: 5px;
+}

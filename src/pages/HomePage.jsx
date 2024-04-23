@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { getTrendingMovies } from "../services/api";
 import Loader from "../components/Loader/Loader";
-import { Link } from "react-router-dom";
+import NotFoundPage from "./NotFoundPage";
+import MovieList from "../components/MovieList";
+import styles from "./HomePage.module.css";
 
 const HomePage = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const fetchTrendingMovies = async () => {
@@ -14,7 +17,7 @@ const HomePage = () => {
         const movies = await getTrendingMovies();
         setTrendingMovies(movies);
       } catch (error) {
-        console.error("Error fetching trending movies:", error);
+        setIsError(true);
       } finally {
         setIsLoading(false);
       }
@@ -24,16 +27,15 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Trending today</h1>
-      {isLoading && <Loader />}
-      <ul>
-        {trendingMovies.map((movie) => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-          </li>
-        ))}
-      </ul>
+    <div className={styles["homepage-container"]}>
+      <h1 className={styles["homepage-title"]}>Trending today</h1>
+      {isLoading && (
+        <div className={styles["loader-container"]}>
+          <Loader />
+        </div>
+      )}
+      {isError && <NotFoundPage />}
+      {trendingMovies && <MovieList movies={trendingMovies} />}
     </div>
   );
 };
